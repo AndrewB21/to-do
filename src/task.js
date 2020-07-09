@@ -1,37 +1,23 @@
-const task = (title, description, deadline, notes, status) => {
-    this.title = title;
-    this.deadline = deadline;
+const task = function(title, description, deadline, notes, status){
+    const changeTitle = function(newTitle){
+       this.title = newTitle;
+   }
 
+   const changeDescription = function(newDescription){
+    this.description = newDescription;
+   }
 
-    const changeTitle = (newTitle) => {
-        title = newTitle;
-    }
+   const changeDeadline = function(newDeadline){
+    this.deadline = newDeadline;
+   }
 
-    const changeDescription = (newDescription) => {
-        description = newDescription;
-    }
+   const addNotes = function(newNotes){
+    this.notes = notes + newNotes;
+   }
 
-    const changeDeadline = (newDeadline) => {
-        deadline = newDeadline;
-    }
+   const changeStatus = function(newStatus){
+    this.status = newStatus;
+   }
 
-    const addNotes = (newNotes) => {
-        notes = this.notes + newNotes;
-    }
-
-    const changeStatus = (newStatus) => {
-        status = newStatus;
-    }
-
-    return {title, 
-            description, 
-            deadline, 
-            notes, 
-            status, 
-            changeTitle, 
-            changeDescription, 
-            changeDeadline, 
-            addNotes, 
-            changeStatus
-        }
+   return {title, description, deadline, notes, status, changeTitle, changeDescription, changeDeadline, addNotes, changeStatus}
 }
