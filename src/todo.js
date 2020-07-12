@@ -1,8 +1,8 @@
 import task from './task';
 
 
-const todo = function(title, description, deadline, notes, status, priority){
-    prototype = task(title, description, deadline, notes, status);
+const todo = function(title, description, deadline, notes, status, priority, id){
+    let prototype = task(title, description, deadline, notes, status, id);
     const changePriority = function(newPriority){
         this.priority = newPriority;
     }
@@ -11,6 +11,6 @@ const todo = function(title, description, deadline, notes, status, priority){
     return Object.assign({}, prototype, {priority, changePriority});
 }
 
-
+export default todo;
 
 

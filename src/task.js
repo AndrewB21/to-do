@@ -21,3 +21,5 @@ const task = function(title, description, deadline, notes, status){
 
    return {title, description, deadline, notes, status, changeTitle, changeDescription, changeDeadline, addNotes, changeStatus}
 }
+
+export default task;
