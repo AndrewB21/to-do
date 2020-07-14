@@ -24,7 +24,7 @@ form{
     position: absolute;
 }
 
-#projects-sidebar{
+.projects-sidebar{
     display: block;
     float: left;
     width: 150px;
@@ -58,7 +58,7 @@ form{
     margin-left: 20px;
 }
 
-#project-content{
+.project-content{
     display: grid;
     grid-template-columns: repeat(3, minmax(100px, 400px));
     grid-template-rows: minmax(300px, 1fr);
