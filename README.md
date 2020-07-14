@@ -2,7 +2,7 @@
 
 Raw HTML, CSS, and JS To Do list
 
-# current features
+# Current Features
 
 Adding projects and tasks, each with a title, description, deadline, priority and status
 
