@@ -4,11 +4,8 @@ label{
 
 body{
 	font-family: 'Source Sans Pro', sans-serif;
-	color: white;    
-    background: #50a3a2;
-    background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-    background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-    background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+	color: black;    
+    background: white;
 }
 
 #header{
@@ -20,8 +17,32 @@ body{
     visibility: hidden;
 }
 
+#project-form-background{
+    width: 500px;
+    height: 500px;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    place-content: center;
+    pointer-events: none;
+    background-color: #288cc9;
+    box-shadow: black 2px;
+}
+
+
 form{
-    position: absolute;
+    position: fixed;
+    pointer-events: auto;
+    margin-top: 75px;
+}
+
+.close-form{
+    color: red;
+    position: fixed;
+    top: 0;
+    right: 0;
+    pointer-events: auto;
 }
 
 .projects-sidebar{
@@ -62,10 +83,12 @@ form{
     display: grid;
     grid-template-columns: repeat(3, minmax(100px, 400px));
     grid-template-rows: minmax(300px, 1fr);
-    grid-gap: 5px;
+    grid-gap: 20px;
+    justify-content: center;
 }
 
 .task-box{
     border: 5px solid black;
     height: auto;
+    text-align: center;
 }

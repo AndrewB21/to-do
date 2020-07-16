@@ -2,17 +2,18 @@ import {projectList} from './projectManager'
 
 const projectsSidebar = document.querySelector('.projects-sidebar');
 const projectsWrapper = document.querySelector('.projects-wrapper');
-
+let currentProject = null;
+let renderStatus = false;
 
 const renderSidebar = () => {
-    console.log(projectList);
     projectsSidebar.innerHTML="";
     projectList.forEach((project, index) => {
         let div = document.createElement('div');
         div.id = `project${index}`;
         div.addEventListener('click', function(e){
-            renderProjectHeader(projectList[e.target.id[7]]);
-            renderProjectContent(projectList[e.target.id[7]]);
+            renderProjectHeader(projectList[project.id]);
+            renderProjectContent(projectList[project.id]);
+            currentProject = project.id;
         })
         div.appendChild(document.createTextNode(project['title']));
         projectsSidebar.appendChild(div);
@@ -22,26 +23,26 @@ const renderSidebar = () => {
 const renderProjectHeader = (project) => {    
     projectsWrapper.innerHTML = '';
     
-    const projectHeader = `
+    const projectHeaderHTML = `
         <div id='project-header'>
             <h2>${project.title}</h2>
             <h3>${project.description}</h3>
             <button id='add-task'>Add Task</button>
         </div>
     `
-    projectsWrapper.innerHTML = projectsWrapper.innerHTML + projectHeader;
-    projectsWrapper.addEventListener('click',function(e){
-        if(e.target && e.target.id== 'add-task'){
-              document.querySelector('#add-task-form').className = "";
-         }
-     });
+    projectsWrapper.innerHTML = projectsWrapper.innerHTML + projectHeaderHTML;
+    if (renderStatus === false){
+        document.addEventListener('click',function(e){
+            if(e.target && e.target.id == 'add-task'){
+                document.querySelector('#add-task-form').classList.toggle('hidden');
+                document.querySelector('#project-form-background').classList.toggle('hidden');
+            }
+        });
+        renderStatus = true;
+    }
 }
 
-const renderProjectContent = (project) => {
-    //let completedTasks = [];
-    //let newTasks = [];
-    //let currentTasks = [];
-    
+const renderProjectContent = (project) => {  
     const appendTask = (task) => {
             let div = document.createElement('div');
             div.innerHTML = `
@@ -58,34 +59,12 @@ const renderProjectContent = (project) => {
 
 
     const taskForm = `
-    <form id="add-task-form" class="hidden">
-                    <label for="task-title">Title</label>
-                        <input type="text" name="task-title">
-                    <label for="task-description">Description</label>
-                        <input type="text" name="task-description">
-                    <label for="task-deadline">Deadline</label>
-                        <input type="date" name="task-deadline">
-                    <label for="task-notes">Notes</label>
-                        <textarea name="notes" form="add-task-form" id="task-notes"></textarea>
-                    <label for="task-status">Status</label>
-                    <select name="task-status" id="task-status">
-                        <option value="Not Started">Not Started</option>
-                        <option value="In Progress">In Progress</option>
-                        <option value="Finished">Finished</option>
-                    </select>
-                    <label for="task-priority">Priority</label>
-                    <select name="task-priority" id="task-priority">
-                        <option value="Low">Low</option>
-                        <option value="Medium">Medium</option>
-                        <option value="High">High</option>
-                      </select>
-                    <button type='submit' id='submit-task'>Submit Task</button>       
-                </form>  
+    
     `
     
     const projectContent = `
         <div id='proj${project.id}' class='project-content'>
-            ${taskForm}
+           
             <div class='task-box new-tasks'>
                 <h5>New Tasks</h5>
             </div> 
@@ -94,7 +73,8 @@ const renderProjectContent = (project) => {
             </div>
             <div class='task-box finished-tasks'>
                 <h5>Completed Tasks</h5>
-            </div>      
+            </div>
+            ${taskForm}      
         </div>
     `
     projectsWrapper.innerHTML = projectsWrapper.innerHTML + projectContent;
@@ -119,4 +99,4 @@ const renderProjectContent = (project) => {
 }
 
 
-export {renderSidebar, renderProjectHeader, renderProjectContent};
+export {renderSidebar, renderProjectHeader, renderProjectContent, currentProject};
